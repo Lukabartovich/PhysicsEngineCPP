@@ -1,3 +1,0 @@
-/home/luka/projects/physics-engine/build/CMakeFiles/PhysicsEngine.dir
-/home/luka/projects/physics-engine/build/CMakeFiles/edit_cache.dir
-/home/luka/projects/physics-engine/build/CMakeFiles/rebuild_cache.dir
