@@ -1,4 +1,5 @@
 #include "Bodies.hpp"
+#include <SDL3/SDL_render.h>
 #include <glm/geometric.hpp>
 
 void Body::update(float dt){
@@ -76,4 +77,9 @@ void Spring::update(){
 	force2 = glm::normalize(force2) * (-1*stiffness*x2);
 
 	body2->applyForce(force2);
+}
+
+void Spring::render(SDL_Renderer* renderer){
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+	RenderThickLine(renderer, body1->pos.x, body1->pos.y, body2->pos.x, body2->pos.y, 10);
 }

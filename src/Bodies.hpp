@@ -55,5 +55,38 @@ class Spring{
 
 		void render(SDL_Renderer* renderer);
 
+		void RenderThickLine(SDL_Renderer *renderer, float x1, float y1, float x2, float y2,
+				float thickness){
+			float dx = x2 - x1;
+			float dy = y2 - y1;
+			float len = SDL_sqrtf(dx*dx + dy*dy);
+			if (len == 0) return;
 
+			dx /= len;
+			dy /= len;
+
+			float px = -dy * (thickness / 2.0f);
+			float py =  dx * (thickness / 2.0f);
+
+			Uint8 r, g, b, a;
+			SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+
+			SDL_FColor col = {
+				r / 255.0f,
+				g / 255.0f,
+				b / 255.0f,
+				a / 255.0f
+			};
+
+			SDL_Vertex verts[4] = {
+				{ {x1 + px, y1 + py}, col, {0,0} },
+				{ {x1 - px, y1 - py}, col, {0,1} },
+				{ {x2 + px, y2 + py}, col, {1,0} },
+				{ {x2 - px, y2 - py}, col, {1,1} }
+			};
+
+			int indices[6] = {0,1,2, 2,1,3};
+
+			SDL_RenderGeometry(renderer, NULL, verts, 4, indices, 6);
+		}
 };

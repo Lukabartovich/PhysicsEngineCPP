@@ -29,6 +29,8 @@ class Engine{
 
 		SDL_Texture* createCircleTexture(SDL_Renderer* renderer, int diameter);
 
+		void drawPolygon(const std::vector<glm::vec2>& points, const SDL_FColor color);
+
 	private:
 		std::chrono::steady_clock::time_point lastTime;
 };
